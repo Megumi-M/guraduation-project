@@ -4,7 +4,6 @@
   <%= f.hidden_field :title %>
   <%= f.hidden_field :content %>
   <%= image_tag(@lesson.image.url) if @lesson.image.url %>
-  <%= f.file_field :image %>
   <%= f.hidden_field :image_cache %>
   <%= f.hidden_field :event_date %>
   <%= f.hidden_field :close_date %>
