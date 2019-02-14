@@ -1,0 +1,8 @@
+<h2>ユーザー一覧(<%= @reservations.length %>人)</h2>
+
+    <% @reservations.each do |reservation| %>
+      <%= link_to reservation.user.name ,user_path(reservation.user_id) %>
+      <br/>
+      </div>
+ 
+    <% end %>

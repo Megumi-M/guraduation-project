@@ -1,0 +1,25 @@
+<h4>レッスン詳細</h4>
+<% unless @lesson.user_id == current_user.id %>
+<% if @reservation.present? %>
+<%= link_to 'キャンセルする', reservation_path(id: @reservation.id), method: :delete, data: { confirm: '本当に削除していいですか？' }, class: 'btn btn-danger' %>
+<% else %>
+<%= link_to 'このレッスンを予約する', new_reservation_path(lesson_id: @lesson.id) %>
+<% end %>
+<% end %>
+
+<p>主催者：<%= @lesson.user.name %></p>
+<p>タイトル：<%= @lesson.title %></p>
+<p>内容：<%= @lesson.content %></p>
+<p><%= image_tag(@lesson.image.url) if @lesson.image.url %></p>
+<p>開催地：<%= @lesson.address %></p>
+<p>開催日時：<%= @lesson.event_date.strftime("%Y/%m/%d") %></p>
+<p>締め切り日時：<%= @lesson.close_date.strftime("%Y/%m/%d") %></p>
+<p>定員：<%= @lesson.capacity %>人</p>
+
+<% if @lesson.user_id == current_user.id %>
+  <%= link_to '編集する', edit_lesson_path(@lesson.id) %>
+  <%= link_to '削除する', lesson_path(@lesson.id), method: :delete, data: { confirm: '本当に削除していいですか？' }  %>
+  <%= link_to '予約者一覧', show_reservations_lesson_path %>
+<% else %>
+  <%= link_to '主催者のプロフィールへ', user_path(@lesson.user_id) %>
+<% end %>

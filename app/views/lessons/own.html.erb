@@ -1,0 +1,19 @@
+<div class= "container">
+<div class = "row">
+  <div class ="col-xs-12 col-md-1">
+  </div>
+  
+  <div class ="col-xs-12 col-md-10">
+<h4><i class="fas fa-utensils"></i>開催中のレッスン一覧</h4>
+
+<% @lessons.each do |lesson| %>
+    <div class="box1">
+    <p><%= lesson.title %></p>
+    <p><%= lesson.content %></p>
+    <p><%= lesson.event_date.strftime("%Y/%m/%d") %></p>
+    <p><%= image_tag(lesson.image.url) if lesson.image.url %></p>
+    <p><%= link_to '詳細へ', lesson_path(lesson.id) %></p>
+    </div>
+<% end %>
+</div>
+</div>

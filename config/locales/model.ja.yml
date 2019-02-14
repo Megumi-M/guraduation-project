@@ -1,0 +1,27 @@
+ja:
+  activerecord:
+    models:
+      lesson: "レッスン"
+      user: "ユーザー"
+      reservation: "予約"
+    attributes:
+      lesson:
+        title: "タイトル"
+        content: "内容"
+        event_date: "開催日"
+        close_date: "締切日"
+        address: "住所"
+      user:
+        title: "タイトル"
+        name: "名前"
+        nickname: "ニックネーム"
+        email: "メールアドレス"
+        telephone: "電話番号"
+        postal_code: "郵便番号"
+        address: "住所"
+        introduction: "自己紹介"
+        current_password: "現在のパスワード"
+        password: "パスワード"
+        icon: "プロフィール画像"
+        password_confirmation: "確認用パスワード"
+        remember_me: "ログインを記憶"

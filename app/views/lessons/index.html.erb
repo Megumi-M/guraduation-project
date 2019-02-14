@@ -1,0 +1,28 @@
+<div class= "container">
+  <div class ="col-xs-12 col-md-10">
+    <h4>レッスン一覧</h4>
+
+  <div>
+    <h5><i class="fa fa-search"></i>開催地で検索</h5>
+    <%= form_tag(lessons_path,:method => 'get') do %>
+      <%= text_field_tag :search %>
+      <%= submit_tag 'Search', :address => nil, class: 'btn btn-primary' do %>
+      <% end %>
+    <% end %>
+    <%= link_to '検索条件のクリア', lessons_path %>
+  </div>
+
+  <% @lessons.each do |lesson| %>
+  <div class="box1">
+    <p>主催者：<%= lesson.user.name %></p>
+    <p>タイトル：<%= lesson.title %></p>
+    <p>内容：<%= lesson.content %></p>
+    <p>開催日程：<%= lesson.event_date.strftime("%Y/%m/%d") %></p>
+    <p>開催地：<%= lesson.address %></p>
+    <p>定員：<%= lesson.capacity %>人</p>
+    <p><%= image_tag(lesson.image.url) if lesson.image.url %></p>
+    <p><%= link_to '詳細へ', lesson_path(lesson.id) %></p>
+  </div>
+  <% end %>
+  </div>
+</div>
