@@ -19,13 +19,6 @@
   <%= f.text_area:content %>
 </div>
 
-<div class="field">
-  <%= f.label :画像添付 %>
-  <%= image_tag(@lesson.image.url) if @lesson.image.url %>
-  <%= f.file_field :image %>
-  <%= f.hidden_field :image_cache %>
-</div>
-
 <div class="form-inline">
   <div class="form-group">
 　<p><%= f.label :開催日程 %></p>
@@ -48,7 +41,13 @@
   <p><%= f.label :定員 %></p>
   <%= f.number_field :capacity, min:1 %>
 </div>
-<br>
+
+<div class="field">
+  <%= f.label :画像添付 %>
+  <%= image_tag(@lesson.image.url) if @lesson.image.url %>
+  <%= f.file_field :image %>
+  <%= f.hidden_field :image_cache %>
+</div>
 <br>
 <%= f.submit "投稿する" %>
 

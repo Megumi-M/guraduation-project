@@ -3,10 +3,10 @@
 <%= form_with(model:@lesson, url:lessons_path, local:true) do |f| %>
   <%= f.hidden_field :title %>
   <%= f.hidden_field :content %>
-  <%= image_tag(@lesson.image.url) if @lesson.image.url %>
-  <%= f.hidden_field :image_cache %>
+    <%= f.hidden_field :image_cache %>
   <%= f.hidden_field :event_date %>
   <%= f.hidden_field :close_date %>
+  <%= f.hidden_field :address %>
   <%= f.hidden_field :capacity %>
   <p>タイトル:<%= @lesson.title %></p>
   <p>本文:<%= @lesson.content %></p>
@@ -14,14 +14,19 @@
   <p>募集締切:<%= @lesson.close_date.strftime("%Y/%m/%d") %></p>
   <p>開催エリア：<%= @lesson.address %></p>
   <p>定員：<%= @lesson.capacity %></p>
+  <p><%= image_tag(@lesson.image.url) if @lesson.image.url %></p>
+  <br>
   <%= f.submit  "投稿する" %>
 <% end %>
-
 <br>
-
 <%= form_with(model:@lesson, url:new_lesson_path, local:true, method: 'get') do |f| %>
   <%= f.hidden_field :title %>
   <%= f.hidden_field :content %>
-
+  <%= f.hidden_field :address %>
+  <%= f.hidden_field :image %>
+  <%= f.hidden_field :image_cache %>
+  <%= f.hidden_field :event_date %>
+  <%= f.hidden_field :close_date %>
+  <%= f.hidden_field :capacity %>
   <%= f.submit  "戻る",name:'back' %>
 <% end %>
