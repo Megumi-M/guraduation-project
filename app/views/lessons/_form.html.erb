@@ -1,54 +1,83 @@
-<%= form_with(model: lesson, local: true, url:choose_new_or_edit) do |f| %>
-  <% if lesson.errors.any? %>
-    <div id="error_explanation">
-      <ul>
-        <% lesson.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+<div class= "container">
+  <div class = "row">
+    <div class ="col-xs-12 col-md-12">
+      <h4>レッスン投稿</h4> 
+      <%= form_with(model: lesson, local: true, url:choose_new_or_edit) do |f| %>
+      <% if lesson.errors.any? %>
+      <div id="error_explanation">
+        <ul>
+          <% lesson.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
       <% end %>
-      </ul>
+      
+      <div class = "row">
+        <div class="form-group">
+        <%= f.label :タイトル %></br>
+        <%= f.text_field:title, class:"col-md-4" %>
+        </div>  
+      </div>
+      <div class = "row">
+        <div class="form-group">
+        <%= f.label :本文 %></br>
+        <%= f.text_area:content, class: "col-md-12" %>
+        </div>
+      </div>
+      </br>
+
+      <div class = "row">
+        <div class="form-inline">
+          <div class="form-group">
+          <%= f.label :開催日程 %></br>
+          <%= f.date_select :close_date, {}, class: 'form-control' %>
+          </div>
+        </div>
+      </div>
+      </br>
+
+      <div class = "row">
+        <div class="form-inline">
+          <div class="form-group">
+          <%= f.label :締め切り日時 %></br>
+          <%= f.date_select :close_date, {}, class: 'form-control' %>
+        </div>
+        </div>
+      </div>
+      </br>
+      
+      <div class = "row">
+        <div class="form-group">
+        <%= f.label :開催地住所 %></br>
+        <%= f.text_field :address, class: "col-md-12" %>
+        </div>
+      </div>
+      </br>
+
+      <div class = "row">
+        <div class="form-group">
+        <%= f.label :定員 %></br>
+        <%= f.number_field :capacity, min:1 , class: "col-md-1" %>
+        </div>
+      </div>
+      </br>
+      
+      <div class = "row">
+        <div class="form-group">
+        <%= f.label :画像添付 %>
+        <%= image_tag(@lesson.image.url) if @lesson.image.url %>
+        <%= f.file_field :image, accept: :image_cache %>
+        </div>
+      </div>
+      </br>
+      
+      <div class = "row">
+        <div class="form-group">
+        <%= f.submit "投稿する", class: 'btn btn-success' %>
+　　　  </div>
+      </div>
+    <% end %>
     </div>
-  <% end %>
-
-<div class="form-group">
-  <p><%= f.label :タイトル %></p>
-  <%= f.text_field:title %>
-</div>  
-  
-<div class="form-group">
-  <p><%= f.label :本文 %></p>
-  <%= f.text_area:content %>
-</div>
-
-<div class="form-inline">
-  <div class="form-group">
-　<p><%= f.label :開催日程 %></p>
-  <%= f.date_select :event_date, {}, class: 'form-control' %>
   </div>
 </div>
-<div class="form-inline">
-  <div class="form-group">
- <p><%= f.label :締め切り日時 %></p>
-  <%= f.date_select :close_date, {}, class: 'form-control' %>
-  </div>
-</div>
-  
-<div class="form-group">
-  <p><%= f.label :開催地住所 %></p>
-  <%= f.text_field :address %>
-</div>
-
-<div class="form-group">
-  <p><%= f.label :定員 %></p>
-  <%= f.number_field :capacity, min:1 %>
-</div>
-
-<div class="field">
-  <%= f.label :画像添付 %>
-  <%= image_tag(@lesson.image.url) if @lesson.image.url %>
-  <%= f.file_field :image %>
-  <%= f.hidden_field :image_cache %>
-</div>
-<br>
-<%= f.submit "投稿する" %>
-
-<% end %>

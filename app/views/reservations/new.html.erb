@@ -1,10 +1,15 @@
-<p>こちらのレッスンを予約します。よろしいですか？</p>
-
-<h4>予約するレッスン</h4>
-<p>主催者:<%= @organizer %></p>
-<p>タイトル:<%= @reservation.lesson.title %></p>
-
-<%= link_to '予約する', reservations_path(lesson_id: @reservation.lesson.id), method: :post, class: 'btn btn-primary' %>
-
-<%= link_to '戻る', lessons_path %>
+<div class = "container-fluid">
+  <div class = "row">
+    <div class = "col-xs-12 col-md-10">
+    <p>こちらのレッスンを予約します。よろしいですか？</p>
+    <h4>予約するレッスン</h4>
+    <p>主催者:<%= @organizer %></p>
+    <p>タイトル:<%= @reservation.lesson.title %></p>
+      <%= link_to '予約する', reservations_path(lesson_id: @reservation.lesson.id), method: :post, class: 'btn btn-primary' %>
+    </br>
+    </br>
+    <%= link_to '戻る', lessons_path %>
+    </div>
+  </div>
+</div>
 

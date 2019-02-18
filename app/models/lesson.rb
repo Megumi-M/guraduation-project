@@ -14,13 +14,31 @@ class Lesson < ApplicationRecord
   validates :content, presence: true, length: { maximum: 250 }
   validates :event_date, presence: true
   validates :close_date, presence: true
+  validates :capacity, presence: true
+  validates :address, presence: true
   
-  
-  def self.search(search) #検索用
-    if search
-      Lesson.where(['address LIKE ?', "%#{search}%"]) #検索とaddressの部分一致を表示。
-    else
-      Lesson.all #全て表示。
-    end
+  def self.search(keyword)
+  if keyword && keyword != ""
+      words = keyword.to_s.split(" ")
+      columns = ["title", "content", "address"]
+      query = []
+      result = []
+ 
+      columns.each do |column|
+        query << ["#{column} LIKE ?"]
+      end
+ 
+      words.each_with_index do |w, index|
+        if index == 0
+          result[index] = Lesson.where([query.join(" OR "), "%#{w}%",  "%#{w}%", "%#{w}%"])
+        else
+          result[index] = result[index-1].where([query.join(" OR "), "%#{w}%",  "%#{w}%", "%#{w}%"])
+        end
+      end
+      
+      return result[words.length-1]
+  else
+      Lesson.all
+  end
   end
 end

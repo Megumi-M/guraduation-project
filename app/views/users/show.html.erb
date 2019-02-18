@@ -1,42 +1,41 @@
-<% provide(:title, @user.name) %>
-<h4><i class="fas fa-user-circle"></i>プロフィール (<%= @user.name %>さん)</h4>
-<% if @user.id != current_user.id %>
-  <div class="item">
+<div class = "container-fluid">
+  <div class = "row">
+    <% provide(:title, @user.name) %>
+    <h4><i class="fas fa-user-circle"></i>プロフィール (<%= @user.name %>さん)</h4>
+    <% if @user.id != current_user.id %>
       <%= link_to 'メッセージを送る', conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: :post %>
-  </div>
-<% end %>
+    <% end %>
 
-<div class="row">
-  <aside class="col-md-4">
-    <div class="panel panel-default">
+    <aside class="col-md-4">
+      <div class="panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title"><%= @user.nickname %></h3>
       </div>
       <div class="panel-body al-c">
-          <% if @user.icon? %>
-            <%= image_tag @user.icon, width: "60%" %>
-          <% else %>
-            <%= image_tag "Noimage.png", width: "60%" %>
-          <% end %>
+        <% if @user.icon? %>
+          <%= image_tag @user.icon, width: "60%" %>
+        <% else %>
+          <%= image_tag "Noimage.png", width: "60%" %>
+        <% end %>
       </div>
+      </div>
+    </aside>
+
+    <div class="col-md-8">
+      <% if @user.id == current_user.id %>
+        <p>氏名: <%= @user.name %></p>
+        <p>メールアドレス: <%= @user.email %></p>
+        <p>電話番号: <%= @user.telephone %></p>
+        <p>郵便番号: <%= @user.postal_code %></p>
+        <p>住所: <%= @user.address %></p>
+      <% end %>
+      <p>自己紹介: <%= @user.introduction %></p>
+
+　    <% if @user.id == current_user.id %>
+　　　  <%= link_to 'プロフィール変更', edit_user_registration_path %> 
+　    <% end %>
     </div>
-  </aside>
-
-  <div class="col-md-8">
-  <% if @user.id == current_user.id %>
-    <p>氏名: <%= @user.name %></p>
-    <p>メールアドレス: <%= @user.email %></p>
-    <p>電話番号: <%= @user.telephone %></p>
-    <p>郵便番号: <%= @user.postal_code %></p>
-    <p>住所: <%= @user.address %></p>
-  <% end %>
-    <p>自己紹介: <%= @user.introduction %></p>
   </div>
-
-　<% if @user.id == current_user.id %>
-　　　<%= link_to 'プロフィール変更', edit_user_registration_path %> 
-　<% end %>
 </div>
-
 
 

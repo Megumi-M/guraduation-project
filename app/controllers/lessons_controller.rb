@@ -3,7 +3,10 @@ class LessonsController < ApplicationController
   before_action :authenticate_user!, only: [:show, :edit, :update, :destroy]
 
   def index
-    @lessons = Lesson.search(params[:search])
+    @lessons = Lesson.search(params[:keyword])
+    if params[:keyword].present?
+      render 'index.js.erb'
+    end
   end
 
 
