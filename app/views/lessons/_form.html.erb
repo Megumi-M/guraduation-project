@@ -15,14 +15,15 @@
       
       <div class = "row">
         <div class="form-group">
-        <%= f.label :タイトル %></br>
-        <%= f.text_field:title, class:"col-md-4" %>
+          <%= f.label :タイトル %></br>
+          <%= f.text_field:title, class:"col-md-4" %>
         </div>  
       </div>
+      
       <div class = "row">
         <div class="form-group">
-        <%= f.label :本文 %></br>
-        <%= f.text_area:content, class: "col-md-12" %>
+          <%= f.label :本文 %></br>
+          <%= f.text_area:content, class: "col-md-12" %>
         </div>
       </div>
       </br>
@@ -30,8 +31,8 @@
       <div class = "row">
         <div class="form-inline">
           <div class="form-group">
-          <%= f.label :開催日程 %></br>
-          <%= f.date_select :close_date, {}, class: 'form-control' %>
+            <%= f.label :開催日程 %></br>
+            <%= f.date_select :event_date, {}, class: 'form-control' %>
           </div>
         </div>
       </div>
@@ -40,8 +41,8 @@
       <div class = "row">
         <div class="form-inline">
           <div class="form-group">
-          <%= f.label :締め切り日時 %></br>
-          <%= f.date_select :close_date, {}, class: 'form-control' %>
+            <%= f.label :締め切り日時 %></br>
+            <%= f.date_select :close_date, {}, class: 'form-control' %>
         </div>
         </div>
       </div>
@@ -49,32 +50,36 @@
       
       <div class = "row">
         <div class="form-group">
-        <%= f.label :開催地住所 %></br>
-        <%= f.text_field :address, class: "col-md-12" %>
+          <%= f.label :開催地住所 %></br>
+          <%= f.text_field :address, class: "col-md-12" %>
         </div>
       </div>
       </br>
 
       <div class = "row">
         <div class="form-group">
-        <%= f.label :定員 %></br>
-        <%= f.number_field :capacity, min:1 , class: "col-md-1" %>
+          <%= f.label :定員 %></br>
+          <%= f.number_field :capacity, min:1 , class: "col-md-1" %>
         </div>
       </div>
       </br>
       
       <div class = "row">
         <div class="form-group">
-        <%= f.label :画像添付 %>
-        <%= image_tag(@lesson.image.url) if @lesson.image.url %>
-        <%= f.file_field :image, accept: :image_cache %>
+          <div class="image_content">
+            <%= image_tag(@lesson.image.url) if @lesson.image.url %>
+            <%= f.hidden_field :image_cache %>
+          </div>
+          <div class="btn btn-default btn-file">
+            <%= f.label :ファイルを選択 %>
+            <%= f.file_field :image %>
+          </div>
         </div>
       </div>
-      </br>
       
       <div class = "row">
         <div class="form-group">
-        <%= f.submit "投稿する", class: 'btn btn-success' %>
+          <%= f.submit "投稿する", class: 'btn btn-success' %>
 　　　  </div>
       </div>
     <% end %>
