@@ -30,8 +30,8 @@
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
     <div class="container">
       <p class="navbar-brand">Cooking!Do</p>
-          <ul class="navbar-nav  list-inline">
-          <% if user_signed_in? %>
+        <ul class="navbar-nav  list-inline">
+        <% if user_signed_in? %>
           <li class="nav-item">
             <%= link_to 'トップ', lessons_path,class:"nav-link js-scroll-trigger" %>
           </li>
@@ -44,7 +44,6 @@
           <li class="nav-item">
             <%= link_to 'レッスンを企画する', new_lesson_path, class:"nav-link js-scroll-trigger" %>
           </li>
-        
         <% else %>
           <li class="nav-item">
             <%= link_to 'トップ', lessons_path,class:"nav-link js-scroll-trigger" %>
@@ -55,9 +54,8 @@
           <li class="nav-item">
             <%= link_to 'サインアップ', new_user_registration_path,class:"nav-link js-scroll-trigger" %>
           </li>
-          <% end %>
+        <% end %>
         </ul>
-      </div>
     </div>
   </nav>
     <div class = "main-container">
@@ -68,6 +66,9 @@
         <p class="alert alert-error"><%= alert %></p>
       <% end %>
     <%= yield %>
+    </div>
+    <div class = "fotter">
+      <p>Cooking!Do  ©MegumiCompany</p>
     </div>
   </body>
 </html>
