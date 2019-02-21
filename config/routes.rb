@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'lessons#index' #ログイン後に遷移する画面
   mount LetterOpenerWeb::Engine, at: "/letter_opener"
-  end
   
   resources :lessons do
     collection do
