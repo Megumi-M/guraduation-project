@@ -11,6 +11,7 @@ ja:
         event_date: "開催日"
         close_date: "締切日"
         address: "住所"
+        capacity: "定員"
       user:
         title: "タイトル"
         name: "名前"

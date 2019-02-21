@@ -66,16 +66,15 @@
       
       <div class = "row">
         <div class="form-group">
-          <div class="image_content">
-            <%= image_tag(@lesson.image.url) if @lesson.image.url %>
-            <%= f.hidden_field :image_cache %>
-          </div>
-          <div class="btn btn-default btn-file">
-            <%= f.label :ファイルを選択 %>
-            <%= f.file_field :image %>
-          </div>
+          <%= image_tag(@lesson.image.url) if @lesson.image.url %>
+          <%= f.hidden_field :image_cache %>
+        </div>
+        <div class="btn btn-default btn-file">
+          <%= f.label :ファイルを選択 %>
+          <%= f.file_field :image %>
         </div>
       </div>
+      </br>
       
       <div class = "row">
         <div class="form-group">
