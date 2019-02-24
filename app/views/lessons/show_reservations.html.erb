@@ -1,6 +1,6 @@
 <div class = "container-fluid" >
   <div class = "row">
-    <div class = "col-xs-12 col-md-10">
+    <div class = "col-xs-12 col-md-10  col-md-offset-1">
       <h4>予約者一覧(<%= @reservations.length %>人)</h4>
         <% @reservations.each do |reservation| %>
           <%= link_to reservation.user.name ,user_path(reservation.user_id) %>

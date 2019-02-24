@@ -52,26 +52,6 @@ ul.navbar-nav{
   color: #fec503;
 }
 
-.btn-primary {
-  background-color: #fed136;
-  border-color: #fed136;
-}
-
-.btn-primary:active, .btn-primary:focus, .btn-primary:hover {
-  background-color: #fec810 !important;
-  border-color: #fec810 !important;
-  color: white;
-}
-
-
-/* 背景画像
-　body {
-    background-image: url("/background.png");
-  background-size: cover;
-  background-repeat: repeat;   
-}
-*/
-
 body {
   overflow-x: hidden;
   font-family: 'Roboto Slab', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';

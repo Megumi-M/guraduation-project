@@ -1,34 +1,68 @@
-<% if @over_ten %>
-  <%= link_to '以前のメッセージ', '?m=all' %>
-<% end %>
+<div class = "container-fluid">
+  <div class = "row">
+    <div class = "col-md-offset-2 col-md-8">
+    <% if @over_ten %>
+      <%= link_to '以前のメッセージ', '?m=all' %>
+    <% end %>
+    </br>
 
-<div class="ui segment">
-  <% @messages.each do |message| %>
-    <% if message.body.present? %>
-      <div class="item">
-        <div class="content">
-          <div class="header"><strong><%= message.user.name %></strong> <%= message.message_time %></div>
-          <div class="list">
-            <div class="item">
-              <i class="right triangle icon"></i>
-              <%= message.body %> /
-              <% if message.user == current_user %>
-                <%= message.read ? '既読' : '未読' %>
-              <% end %>  
-            </div>
+    <% @messages.each do |message| %>
+      <% if message.body.present? %>
+        <% if message.user == current_user %> 
+        <div class="balloon">
+          <div class = "time_right">
+            <%= message.message_time %>
+          </div>
+          </br>
+          <figure class="balloon-image-right">
+            <% if message.user.icon? %>
+              <%= image_tag message.user.icon %>
+            <% else %>
+              <%= image_tag "Noimage.png" %>
+            <% end %>
+            <figcaption class="balloon-image-description">
+              <%= message.user.name %>
+            </figcaption>
+          </figure>
+          <div class="balloon-text-left">  
+            <p><%= message.body %></p> 
           </div>
         </div>
-      </div>
+        </br>
+        <% else %>
+        <div class="balloon">
+          <div class = "time_left">
+            <%= message.message_time %>
+          </div>
+          </br>
+          <figure class="balloon-image-left">
+            <% if message.user.icon? %>
+              <%= image_tag message.user.icon %>
+            <% else %>
+              <%= image_tag "Noimage.png" %>
+            <% end %>
+            <figcaption class="balloon-image-description">
+              <%= message.user.name %>
+            </figcaption>
+          </figure>
+          <div class="balloon-text-right">
+            <p><%= message.body %></p>
+          </div>
+        </div>
+        </br>   
+        <% end %>  
+      <% end %>
     <% end %>
-  <% end %>
-</div>
-
-<%= form_with(model: [@conversation, @message]) do |f| %>
-  <div class="field">
-    <%= f.text_area :body, class: "form-control" %>
-  </div>
+    </br>
+    <%= form_with(model: [@conversation, @message]) do |f| %>
+    <div class="form-group">
+      <%= f.text_area :body, class: "form-control" %>
+    </div>
     <%= f.text_field :user_id, value: current_user.id, type: "hidden"  %>
-  <div>
-    <%= f.submit "メッセージを送る" %>
+    <div>
+      <%= f.submit "メッセージを送る" %>
+    </div>
+    <% end %>
+    </div>
   </div>
-<% end %>
+</div>

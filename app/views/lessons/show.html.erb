@@ -1,12 +1,12 @@
 <div class = "container-fluid">
   <div class ="row">
-    <div class = "col-xs-12 col-md-10">
+    <div class = "col-xs-12 col-md-10 col-md-offset-1">
       <h4>レッスン詳細&nbsp;
       <% unless @lesson.user_id == current_user.id %>
         <% if @reservation.present? %>
           <%= link_to 'キャンセルする', reservation_path(id: @reservation.id), method: :delete, data: { confirm: '本当に削除していいですか？' }, class: 'btn btn-danger' %>
         <% else %>
-          <%= link_to 'このレッスンを予約する', new_reservation_path(lesson_id: @lesson.id) %>
+          <%= link_to '予約する', new_reservation_path(lesson_id: @lesson.id), class: 'btn btn-success' %>
         <% end %>
       <% end %>
       </h4>

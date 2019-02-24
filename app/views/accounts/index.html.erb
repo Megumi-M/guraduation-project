@@ -1,25 +1,32 @@
-<div class = "container" >
-<h4><i class="fas fa-key"></i>会員ページ</h4>
-<aside class="col-md-4">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title"><%= @user.nickname %></h3>
-      </div>
-      <div class="panel-body al-c">
+<div class = "container-fluid" >
+  <div class = "row">
+    <div class = "col-md-10 col-md-offset-1">
+    <h4><i class="fas fa-key"></i>会員ページ</h4>
+    </div>
+  </div>
+  <div class = "row">
+    <aside class="col-md-4 col-md-offset-1">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title"><%= @user.nickname %></h3>
+        </div>
+        <div class="panel-body al-c">
           <% if @user.icon? %>
             <%= image_tag @user.icon, width: "60%" %>
           <% else %>
             <%= image_tag "Noimage.png", width: "60%" %>
           <% end %>
+        </div>
       </div>
+    </aside>
+    <div class="col-md-4">
+      <ul>
+        <li><i class="far fa-comment-alt"></i><%= link_to "メッセージ", conversations_path %></li>
+        <li><i class="fas fa-edit"></i><%= link_to "レッスンを主催する", new_lesson_path %></li>
+        <li><i class="fas fa-book-open"></i><%= link_to "予約中のレッスン一覧", reservations_path %></li>
+        <li><i class="fas fa-utensils"></i><%= link_to "開催中のレッスン一覧", own_lessons_path %></li>
+        <li><i class="fas fa-user-circle"></i><%= link_to 'ユーザーページ', user_path(current_user.id) %></li>
+      </ul>
     </div>
-  </aside>
-<div class="col-md-4">
-<ul>
-  <li><i class="far fa-comment-alt"></i><%= link_to "メッセージ", conversations_path %></li>
-  <li><i class="fas fa-edit"></i><%= link_to "レッスンを主催する", new_lesson_path %></li>
-  <li><i class="fas fa-book-open"></i><%= link_to "予約中のレッスン一覧", reservations_path %></li>
-  <li><i class="fas fa-utensils"></i><%= link_to "開催中のレッスン一覧", own_lessons_path %></li>
-  <li><i class="fas fa-user-circle"></i><%= link_to 'ユーザーページ', user_path(current_user.id) %></li>
-</ul>
+  </div>
 </div>
