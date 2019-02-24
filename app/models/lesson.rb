@@ -10,12 +10,22 @@ class Lesson < ApplicationRecord
   has_many :reservations, dependent: :destroy
   has_many :reservation_users, through: :reservations, source: :user
   
-  validates :title, presence: true
+  validates :title, presence: true,length: { maximum: 100 }
   validates :content, presence: true, length: { maximum: 250 }
   validates :event_date, presence: true
   validates :close_date, presence: true
   validates :capacity, presence: true
   validates :address, presence: true
+  validate :not_before_today
+  
+  default_scope -> { order(created_at: :desc) }
+
+  def not_before_today
+    errors.add(:event_date, 'は明日以降の日付を指定してください') if event_date < Date.today
+    errors.add(:close_date, 'は明日以降の日付を指定してください') if event_date < Date.today
+  end
+  
+  
   
   def self.search(keyword)
   if keyword && keyword != ""
