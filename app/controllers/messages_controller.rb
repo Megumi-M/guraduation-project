@@ -3,6 +3,9 @@ class MessagesController < ApplicationController
     @conversation = Conversation.find(params[:conversation_id])
   end
   
+  before_action :correct_user, only:[:index, :create]
+    
+  
   def index
   @messages = @conversation.messages
   if @messages.length > 10
@@ -37,5 +40,11 @@ private
   def message_params
   params.require(:message).permit(:body, :user_id)
   end
-
+  
+  def correct_user
+    if  @conversation.sender_id != current_user.id && @conversation.recipient_id != current_user.id
+      redirect_to(root_url)
+    end
+  end
+  
 end
