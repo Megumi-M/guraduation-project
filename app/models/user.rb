@@ -6,7 +6,7 @@ class User < ApplicationRecord
   
   validates :name, presence: true 
   validates :nickname, presence: true
-  #validates :telephone, presence: true, uniqueness: true, format: {with: /\A\d{10}$|^\d{11}\z/}
+  validates :telephone, presence: true, uniqueness: true, format: {with: /\A\d{10}$|^\d{11}\z/}
   validates :introduction, length: { maximum: 250 }
   validates :postal_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/}
   

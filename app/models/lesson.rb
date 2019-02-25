@@ -25,10 +25,8 @@ class Lesson < ApplicationRecord
     errors.add(:close_date, 'は明日以降の日付を指定してください') if event_date < Date.today
   end
   
-  
-  
   def self.search(keyword)
-  if keyword && keyword != ""
+    if keyword && keyword != ""
       words = keyword.to_s.split(" ")
       columns = ["title", "content", "address"]
       query = []
@@ -47,8 +45,9 @@ class Lesson < ApplicationRecord
       end
       
       return result[words.length-1]
-  else
+    else
       Lesson.all
+    end
   end
-  end
+  
 end

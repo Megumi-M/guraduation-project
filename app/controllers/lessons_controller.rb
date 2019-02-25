@@ -9,7 +9,6 @@ class LessonsController < ApplicationController
     end
   end
 
-
   def new
     if params[:back]
       @lesson = Lesson.new(lesson_params)
@@ -31,20 +30,20 @@ class LessonsController < ApplicationController
   def create
     @lesson = Lesson.new(lesson_params)
     @lesson.user_id = current_user.id
-      if @lesson.save
-        redirect_to lesson_path(@lesson.id), notice:"投稿しました！"
-        #LessonMailer.lesson_mail(@lesson).deliver
-      else
-        render "new"
-      end
+    if @lesson.save
+      redirect_to lesson_path(@lesson.id), notice:"投稿しました！"
+      #LessonMailer.lesson_mail(@lesson).deliver
+    else
+      render "new"
+    end
   end
   
   def confirm
     @lesson = Lesson.new(lesson_params)
     @lesson.user_id = current_user.id
-      if @lesson.invalid? 
-        render 'new'
-      end
+    if @lesson.invalid? 
+      render 'new'
+    end
   end
   
   def show_reservations
@@ -72,15 +71,13 @@ class LessonsController < ApplicationController
       redirect_to lessons_path, notice:"削除しました！"
   end
   
-private
+  private
 
   def set_lesson
-  @lesson = Lesson.find(params[:id])
+    @lesson = Lesson.find(params[:id])
   end
   
   def lesson_params
-  params.require(:lesson).permit(:title, :content, :image, :image_cache, :REGISTRABLE_ATTRIBUTES, :event_date, :close_date, :address, :capacity)
+    params.require(:lesson).permit(:title, :content, :image, :image_cache, :REGISTRABLE_ATTRIBUTES, :event_date, :close_date, :address, :capacity)
   end
-  
-
 end
